@@ -1,5 +1,9 @@
-alias config='/usr/bin/git --git-dir=/home/alex/.cfg/ --work-tree=/home/alex'
+# general
 alias lsa="ls -lha"
+
+
+# git
+alias config='/usr/bin/git --git-dir=/home/alex/.cfg/ --work-tree=/home/alex'
 alias ggraph="git log --graph --oneline --all"
 
 git-rebase () {
