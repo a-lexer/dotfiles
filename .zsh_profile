@@ -1,2 +1,11 @@
 alias config='/usr/bin/git --git-dir=/home/alex/.cfg/ --work-tree=/home/alex'
 alias lsa="ls -lha"
+
+git-rebase () {
+    from_branch=""
+    onto_branch=""
+    echo -n "Rebase from: "; read from_branch
+    echo -n "to: "; read onto_branch
+    echo "this will replay changes from $from_branch on to $onto_branch, so that $onto_branch's history looks like it shares the same history as $from_branch"
+    git rebase -i $from_branch $onto_branch
+}
