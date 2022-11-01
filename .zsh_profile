@@ -1,5 +1,5 @@
 # general
-alias lsa="ls -lha"
+alias lsa="ls -lha --color=auto"
 
 
 # git
