@@ -5,6 +5,8 @@ alias lsa="ls -lha --color=auto"
 # git
 alias config='/usr/bin/git --git-dir=/home/alex/.cfg/ --work-tree=/home/alex'
 alias ggraph="git log --graph --oneline --all"
+alias get_last_history_items='history | sed s/^\ //g | cut -d" " -f1 --complement | sed s/^\ //'
+
 
 git-rebase () {
     from_branch=""
@@ -14,3 +16,22 @@ git-rebase () {
     echo "this will replay changes from $from_branch on to $onto_branch, so that $onto_branch's history looks like it shares the same history as $from_branch"
     git rebase -i $from_branch $onto_branch
 }
+
+
+group_user_info() {
+ for group in $(groups); do echo $(getent group $group); done
+}
+
+
+path=('/home/alex/.local/bin' $path)
+
+# mainly a reminder
+function python_requirements_update() {
+	if [ ! -f ./requirements.txt ]; then
+		echo 'ERROR: no requirements.txt found in current working directory'
+        else
+                < requirements.txt | cut -d"=" -f1 | xargs -I NAME curl -H application/json "https://pypi.org/pypi/NAME/json" -L | jq -r ".info.name + \"==\" + (.releases | keys[-1])" > updated_requirements.txt
+	fi
+}	
+
+
