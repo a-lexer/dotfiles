@@ -6,7 +6,7 @@ alias lsa="ls -lha --color=auto"
 alias config='/usr/bin/git --git-dir=/home/alex/.cfg/ --work-tree=/home/alex'
 alias ggraph="git log --graph --oneline --all"
 alias get_last_history_items='history | sed s/^\ //g | cut -d" " -f1 --complement | sed s/^\ //'
-
+alias z.="source ~/.zsh_profile"
 
 git-rebase () {
     from_branch=""
@@ -35,3 +35,6 @@ function python_requirements_update() {
 }	
 
 
+function cheat(){
+    curl "cheat.sh/$1"
+}
