@@ -38,3 +38,17 @@ function python_requirements_update() {
 function cheat(){
     curl "cheat.sh/$1"
 }
+
+
+function ip_to_binary {
+    split_ip=$(cut -d"." -f1,2,3,4 --output-delimiter=$'\n' <<< $1);
+    for field in ${=split_ip}; do 
+	acc=""
+	while [[ $field -gt 0 ]]; do
+	    r=$(($field % 2))
+            acc="${r}${acc}"
+	    field=$((field / 2))
+	done
+        echo "$acc";
+    done
+}
