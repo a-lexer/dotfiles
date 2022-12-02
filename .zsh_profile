@@ -41,14 +41,18 @@ function cheat(){
 
 
 function ip_to_binary {
-    split_ip=$(cut -d"." -f1,2,3,4 --output-delimiter=$'\n' <<< $1);
+    split_ip=$(cut -d"." -f1-4 --output-delimiter=$'\n' <<< $1);
     for field in ${=split_ip}; do 
 	acc=""
-	while [[ $field -gt 0 ]]; do
+	while [ $field -gt 0 ]; do
 	    r=$(($field % 2))
             acc="${r}${acc}"
 	    field=$((field / 2))
-	done
-        echo "$acc";
+	    done 
+	while [ $(echo $acc | wc -m) -le 8 ]; do
+	        # do stuff here
+		acc="0${acc}"
+	done    
+	echo "$acc";
     done
 }
