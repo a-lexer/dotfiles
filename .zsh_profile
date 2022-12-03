@@ -1,3 +1,4 @@
+
 # general
 alias lsa="ls -lha --color=auto"
 
@@ -11,10 +12,10 @@ alias z.="source ~/.zsh_profile"
 git-rebase () {
     from_branch=""
     onto_branch=""
-    echo -n "Rebase from: "; read from_branch
-    echo -n "to: "; read onto_branch
+    echo -n "Rebase from: "; read -r from_branch
+    echo -n "to: "; read -r onto_branch
     echo "this will replay changes from $from_branch on to $onto_branch, so that $onto_branch's history looks like it shares the same history as $from_branch"
-    git rebase -i $from_branch $onto_branch
+    git rebase -i "$from_branch" "$onto_branch"
 }
 
 
@@ -41,15 +42,15 @@ function cheat(){
 
 
 function ip_to_binary {
-    split_ip=$(cut -d"." -f1-4 --output-delimiter=$'\n' <<< $1);
+    split_ip=$(cut -d"." -f1-4 --output-delimiter=$'\n' <<< "$1");
     for field in ${=split_ip}; do 
 	acc=""
-	while [ $field -gt 0 ]; do
-	    r=$(($field % 2))
+	while [ "$field" -gt 0 ]; do
+	    r=$((field % 2))
             acc="${r}${acc}"
 	    field=$((field / 2))
 	    done 
-	while [ $(echo $acc | wc -m) -le 8 ]; do
+	while [ "$(wc -m <<< $acc)" -le 8 ]; do
 	        # do stuff here
 		acc="0${acc}"
 	done    
