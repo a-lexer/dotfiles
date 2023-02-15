@@ -8,6 +8,16 @@ alias config='/usr/bin/git --git-dir=/home/alex/.cfg/ --work-tree=/home/alex'
 alias ggraph="git log --graph --oneline --all"
 alias get_last_history_items='history | sed s/^\ //g | cut -d" " -f1 --complement | sed s/^\ //'
 alias z.="source ~/.zsh_profile"
+alias reset_shell_charset_encoding="echo -en '\e(B'"
+
+dig_any() {
+    dig $1 -t a +short;
+    dig $1 -t aaaa +short;
+    dig $1 -t mx +short;
+    dig $1 -t cname +short;
+    dig $1 -t txt +short;
+    dig $1 -t ns +short;
+}
 
 git-rebase () {
     from_branch=""
@@ -57,3 +67,4 @@ function ip_to_binary {
 	echo "$acc";
     done
 }
+
